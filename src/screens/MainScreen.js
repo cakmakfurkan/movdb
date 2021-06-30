@@ -41,18 +41,14 @@ class MainScreen extends Component {
   };
 
   onNextPressed = () => {
-    console.log('next');
     if (this.state.page < this.state.totalPages) {
-      console.log('next');
       this.getMovies(this.state.page + 1);
       this.setPage(this.state.page++);
     }
   };
 
   onBackPressed = () => {
-    console.log('back');
     if (this.state.page > 1) {
-      console.log('back');
       this.getMovies(this.state.page - 1);
       this.setPage(this.state.page--);
     }

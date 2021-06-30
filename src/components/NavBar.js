@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {withNavigation} from 'react-navigation';
 
 const NavBar = props => {
   NavBar.propTypes = {
@@ -13,7 +14,10 @@ const NavBar = props => {
 
   return (
     <View style={styles.navbar}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('Main');
+        }}>
         <Icon name="home" size={30} color="white" />
       </TouchableOpacity>
       <TouchableOpacity onPress={props.onBackPressed}>
@@ -25,7 +29,10 @@ const NavBar = props => {
       <TouchableOpacity onPress={props.onNextPressed}>
         <Icon name="chevron-right" size={30} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('Fav');
+        }}>
         <Icon name="heart" size={30} color="white" />
       </TouchableOpacity>
     </View>
@@ -51,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NavBar;
+export default withNavigation(NavBar);

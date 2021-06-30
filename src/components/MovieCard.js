@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Image, TouchableOpacity, View, Text} from 'react-native';
+import {withNavigation} from 'react-navigation';
 
 const MovieCard = props => {
   const imageBase = 'https://image.tmdb.org/t/p/w300';
@@ -13,13 +14,17 @@ const MovieCard = props => {
     voteAverage: PropTypes.number,
   };
 
+  const onDetailPress = () => {
+    props.navigation.navigate('Detail', {movieID: props.id});
+  };
+
   return (
-    <TouchableOpacity style={styles.card} onPress={props.onDetailPress}>
+    <TouchableOpacity style={styles.card} onPress={onDetailPress}>
       <Image style={styles.image} source={{uri: imageBase + props.imagePath}} />
       <View style={styles.voteAverage}>
         <Text style={styles.voteText}>{props.voteAverage}</Text>
       </View>
-      <View style={{justifyContent: 'space-between', flex: 1}}>
+      <View>
         <Text style={styles.title}>{props.title}</Text>
         <Text style={styles.releaseDate}>{props.releaseDate}</Text>
       </View>
@@ -47,8 +52,8 @@ const styles = StyleSheet.create({
   },
   releaseDate: {
     marginLeft: '4%',
-    marginBottom: '4%',
-    fontSize: 15,
+    marginTop: '2%',
+    fontSize: 14,
   },
   voteAverage: {
     marginTop: '-25%',
@@ -73,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MovieCard;
+export default withNavigation(MovieCard);
